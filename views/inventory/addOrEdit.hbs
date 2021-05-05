@@ -1,0 +1,46 @@
+<h3>{{viewTitle}}</h3>
+
+<form action="/inventory" method="POST" autocomplete="off">
+    <input type="hidden" name="_id" value="{{inventory._id}}">
+    <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" class="form-control" name="fullName" placeholder="Full Name" value="{{inventory.fullName}}">
+        <div class="text-danger">
+            {{student.fullNameError}}</div>
+    </div>
+    <div class="form-group">
+        <label>Address</label>
+        <input type="text" class="form-control"name="address" placeholder="Address" value="{{inventory.address}}">
+        <div class="text-danger">
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>Date</label>
+            <input type="text" class="form-control" name="date" placeholder="Date" value="{{inventory.date}}">
+        </div>
+        <div class="form-group col-md-6">
+            <label>Time</label>
+            <input type="time" class="form-control" name="time" placeholder="Time" value="{{inventory.time}}">
+        </div>
+        <div class="form-group col-md-12">
+            <label>Item Name</label>
+            <input type="text" class="form-control" name="itemName" placeholder="Item Name" value="{{inventory.itemName}}">
+        </div>
+        <div class="form-group col-md-6">
+            <label>Unit Price</label>
+            <input type="number" class="form-control" name="unitPrice" placeholder="Unit Price" value="{{inventory.unitPrice}}">
+        </div>
+        <div class="form-group col-md-6">
+            <label>Quantity</label>
+            <input type="number" class="form-control" name="quantity" placeholder="Quantity" value="{{inventory.quantity}}">
+        </div>
+        <div class="form-group col-md-12">
+            <label>Total</label>
+            <input type="number" class="form-control" name="total" placeholder="Total" value="{{inventory.total}}">
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-info"><i class="fa fa-database"></i> Submit</button>
+        <a class="btn btn-secondary" href="/inventory/list"><i class="fa fa-list-alt"></i> View All</a>
+    </div>
+</form>
