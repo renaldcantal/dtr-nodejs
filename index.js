@@ -20,9 +20,4 @@ app.set('view engine', 'hbs');
 
 app.listen(port, () => console.log(`App running on ${port}`))
 
-app.use('/inventory', systemController);
-
-app.get('/inventory/list', (req, res) => {
-    console.log("")
-    res.render('systemController')
-})
+app.use('/dtr', systemController);

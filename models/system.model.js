@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-var inventorySchema = new mongoose.Schema({
+var dtrSchema = new mongoose.Schema({
     fullName: {
         type: String,
         required: 'This field is required.'
@@ -8,24 +8,24 @@ var inventorySchema = new mongoose.Schema({
     address: {
         type: String
     },
-    date: {
+    jobtype: {
         type: String
     },
-    time: {
+    companyname: {
         type: String
     },
-    itemName: {
+    timeInAm: {
         type: String
     },
-    unitPrice: {
-        type: Number
+    timeOutAm: {
+        type: String
     },
-    quantity: {
-        type: Number
+    timeInPm: {
+        type: String
     },
-    total: {
-        type: Number
+    timeOutPm: {
+        type:String 
     }
 });
 
-mongoose.model('Inventory', inventorySchema);
+mongoose.model('DTR', dtrSchema);

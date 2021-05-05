@@ -1,10 +1,10 @@
 const express = require('express');
 var router = express.Router();
 const mongoose = require('mongoose');
-const Inventory = mongoose.model('Inventory');
+const DTR = mongoose.model('DTR');
 
 router.get('/', (req, res) => {
-    res.render("inventory/addOrEdit", {
+    res.render("dtr/addOrEdit", {
         viewTitle: "Insert Details Here"
     });
 });
@@ -18,25 +18,25 @@ router.post('/', (req, res) => {
 
 
 function insertRecord(req, res) {
-    var inventory = new Inventory();
-    inventory.fullName = req.body.fullName;
-    inventory.address = req.body.address;
-    inventory.date = req.body.date;
-    inventory.time = req.body.time;
-    inventory.itemName = req.body.itemName;
-    inventory.unitPrice = req.body.unitPrice;
-    inventory.quantity = req.body.quantity;
-    inventory.total = req.body.total;
+    var dtr = new DTR();
+    dtr.fullName = req.body.fullName;
+    dtr.address = req.body.address;
+    dtr.jobtype = req.body.jobtype;
+    dtr.companyname = req.body.companyname;
+    dtr.timeInAm = req.body.timeInAm;
+    dtr.timeOutAm = req.body.timeOutAm;
+    dtr.timeInPm = req.body.timeInPm;
+    dtr.timeOutPm = req.body.timeOutPm;
 
-    inventory.save((err, doc) => {
+    dtr.save((err, doc) => {
         if (!err)
-            res.redirect('inventory/list');
+            res.redirect('dtr/list');
         else {
             if (err.name == 'ValidationError') {
                 handleValidationError(err, req.body);
-                res.render("inventory/addOrEdit", {
+                res.render("dtr/addOrEdit", {
                     viewTitle: "Insert",
-                    inventory: req.body
+                    dtr: req.body
                 });
             }
             else
@@ -46,14 +46,14 @@ function insertRecord(req, res) {
 }
 
 function updateRecord(req, res) {
-    Inventory.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
-        if (!err) { res.redirect('inventory/list'); }
+    DTR.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
+        if (!err) { res.redirect('dtr/list'); }
         else {
             if (err.name == 'ValidationError') {
                 handleValidationError(err, req.body);
-                res.render("inventory/addOrEdit", {
+                res.render("dtr/addOrEdit", {
                     viewTitle: 'Update',
-                    inventory: req.body
+                    dtr: req.body
                 });
             }
             else
@@ -64,9 +64,9 @@ function updateRecord(req, res) {
 
 
 router.get('/list', (req, res) => {
-    Inventory.find((err, docs) => {
+    DTR.find((err, docs) => {
         if (!err) {
-            res.render("inventory/list", {
+            res.render("dtr/list", {
                 list: docs
             });
         }
@@ -90,20 +90,20 @@ function handleValidationError(err, body) {
 }
 
 router.get('/:id', (req, res) => {
-    Inventory.findById(req.params.id, (err, doc) => {
+    DTR.findById(req.params.id, (err, doc) => {
         if (!err) {
-            res.render("inventory/addOrEdit", {
+            res.render("dtr/addOrEdit", {
                 viewTitle: "Update",
-                inventory: doc
+                dtr: doc
             });
         }
     });
 });
 
 router.get('/delete/:id', (req, res) => {
-    Inventory.findByIdAndRemove(req.params.id, (err, doc) => {
+    DTR.findByIdAndRemove(req.params.id, (err, doc) => {
         if (!err) {
-            res.redirect('/inventory/list');
+            res.redirect('/dtr/list');
         }
         else { console.log('Error in student delete :' + err); }
     });

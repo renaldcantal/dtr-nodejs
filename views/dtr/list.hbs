@@ -1,0 +1,36 @@
+<h3><a class="btn btn-secondary" href="/dtr"><i class="fa fa-plus"></i> Insert</a> DTR Information Details</h3>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Address</th>
+            <th>Job Type</th>
+            <th>Comapny Name</th>
+            <th>Time-IN(AM)</th>
+            <th>Time-OUT(AM)</th>
+            <th>Time-IN(PM)</th>
+            <th>Time-OUT(PM)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each list}}
+        <tr>
+            <td>{{this.id}}</td>
+            <td>{{this.fullName}}</td>
+            <td>{{this.address}}</td>
+            <td>{{this.jobtype}}</td>
+            <td>{{this.companyname}}</td>
+            <td>{{this.timeInAm}}</td>
+            <td>{{this.timeOutAm}}</td>
+            <td>{{this.timeInPm}}</td>
+            <td>{{this.timeOutPm}}</td>
+            <td>
+                <a href="/dtr/{{this._id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
+                <a href="/dtr/delete/{{this._id}}" onclick="return confirm('Are you sure to delete this record ?');"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
